@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="w-full h-screen overflow-x-hidden border-t flex flex-col">
+  <main class="w-full flex-grow p-6">
+      <h1 class="text-3xl text-black pb-6">Servers</h1>
+      <div
+        x-data="{ 'showModal': false }"
+        @keydown.escape="showModal = false"
+      >
+          <!-- Trigger for Modal -->
+          <button type="button"  @click="showModal = true" class="w-full bg-white cta-btn font-semibold py-2 mt-2 rounded-lg shadow-lg hover:shadow-xl hover:bg-gray-300 flex items-center justify-center">
+            <i class="fas fa-plus mr-3"></i> Launch New Server
+        </button>
+          {% block modal %}
+          {% include 'components/modal.html' %}
+          {% endblock %}
+
+
+      </div>
+        
+        {% block my_server_table %}
+        
+        {% include 'components/my_server_table.html' %}
+        
+        {% endblock  %}
+
+        {% block other_server_table %}
+        
+        {% include 'components/other_server_table.html' %}
+        
+        {% endblock  %}
+
+</main>
+
+{% endblock %}

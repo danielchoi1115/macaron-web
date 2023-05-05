@@ -1,0 +1,22 @@
+{% block navbar %}
+<aside class="relative bg-sidebar h-screen w-64 hidden sm:block shadow-xl">
+        <div class="px-6 py-2">
+            <a href="/dashboard" class="text-gray-900 text-3xl font-semibold uppercase hover:text-gray-700">Admin</a>
+        </div>
+        <nav class="text-gray-700 text-base font-semibold pt-3">
+            
+            <a href="/dashboard" class="flex items-center opacity-80 hover:opacity-90 hover:text-orange-50 py-4 pl-6 nav-item {{ 'active-nav-link text-orange-50' if page == 'dashboard' else 'text-gray-700' }}">
+                <i class="fas fa-tachometer-alt mr-3"></i>
+                Dashboard
+            </a>
+            <a href="#" class="flex items-center opacity-80 hover:opacity-90 hover:text-orange-50 py-4 pl-6 nav-item {{ 'active-nav-link text-black' if page == 'notifications' else 'text-gray-700' }}">
+                <i class="fas fa-sticky-note mr-3"></i>
+                Notifications
+            </a>
+            <a href="#" class="flex items-center opacity-80 hover:opacity-90 hover:text-orange-50 py-4 pl-6 nav-item {{ 'active-nav-link text-black' if page == 'support' else 'text-gray-700' }}">
+                <i class="fas fa-table mr-3"></i>
+                Support
+            </a>
+        </nav>
+    </aside>
+{% endblock %}

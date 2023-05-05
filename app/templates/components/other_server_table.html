@@ -1,0 +1,72 @@
+{% extends '/components/table_base.html' %}
+
+{% block table_name%}
+Other dudes' server
+{% endblock table_name%}
+
+{% block table_body %}
+
+    <tbody>
+        
+            {% for server in other_servers %}
+        <tr>
+            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                <p class="text-gray-900 whitespace-no-wrap">{{loop.index}}</p>
+            </td>
+
+            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                <p class="text-gray-900 whitespace-no-wrap">{{server.server_name}}</p>
+            </td>
+
+            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                <p class="text-gray-900 whitespace-no-wrap">{{server.to_relative_time()}} </p>
+            </td>
+
+            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                <p class="text-gray-900 whitespace-no-wrap">{{server.description}}</p>
+            </td>
+
+            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                <p class="text-gray-900 whitespace-no-wrap">{{server.server_deployer}}</p>
+            </td>
+
+            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                <a
+                    class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight"
+                    href="http://{{server.server_name}}.ginger-macaron.world"
+                >
+                    <span aria-hidden
+                        class="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span>
+                    <span class="relative">{{server.game_server_tag}}</span>
+                    <i class="fa fa-external-link" aria-hidden="true"></i>
+                </a>
+            </td>
+
+            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                <a
+                    class="relative inline-block px-3 py-1 font-semibold text-orange-900 leading-tight"
+                    href="http://{{server.server_name}}-db.ginger-macaron.world"
+                >
+                    <span aria-hidden
+                        class="absolute inset-0 bg-orange-200 opacity-50 rounded-full"></span>
+                    <span class="relative">{{server.macaron_tag}}</span>
+                    <i class="fa fa-external-link" aria-hidden="true"></i>
+                </a>
+            </td>
+
+            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm"  id="status-{{ server.server_name }}" >
+            </td>
+            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm" >
+                -
+            </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    {% for server in other_servers %}
+        updateStatus("{{server.server_name}}")
+    {% endfor %}
+})
+</script>
+{% endblock %}

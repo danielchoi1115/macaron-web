@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="/static/style.css" rel="stylesheet">
+    
+</head>
+<body class="bg-gray-100 font-family-karla flex">
+    
+    {% block sidebar %} 
+    {% include 'components/sidebar.html' %}
+    {% endblock %}
+    
+    <div class="relative w-full flex flex-col h-screen overflow-y-hidden">
+            
+        {% block header %}
+        {% include 'components/header.html' %}
+        {% endblock %}
+        
+        {% block content %}{% endblock %}
+
+    </div>
+    <!-- AlpineJS -->
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="/static/server.js"></script>
+
+    
+</body>
+</html>

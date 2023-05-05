@@ -1,0 +1,77 @@
+{% block modal %}
+<!-- Modal -->
+    <div class="fixed inset-0 z-30 flex items-center justify-center overflow-auto bg-black bg-opacity-50"
+        x-show="showModal">
+        <!-- Modal inner -->
+        <div
+            class="max-w-3xl px-6 py-4 mx-auto text-left bg-white rounded shadow-lg h-fit w-1/2 overflow-auto"
+            x-transition:enter="motion-safe:ease-out duration-300"
+            x-transition:enter-start="opacity-0 scale-90"
+            x-transition:enter-end="opacity-100 scale-100"
+        >
+            <!-- Title / Close-->
+            <div class="flex items-center justify-between">
+                <h5 class="mr-3 text-black max-w-none">Create New Server</h5>
+
+                <button type="button" class="z-50 cursor-pointer" @click="showModal = false">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+
+            <!-- content -->
+            <div class="">
+                <form 
+                    action="/api/v1/server" method="POST"
+                    class="p-10 bg-white rounded shadow-xl ">
+                    <p class="text-lg text-gray-800 font-medium pb-4">Server Information</p>
+                    
+                    <div class="mt-2">
+                        <label class=" block text-sm text-gray-600" for="server_name">Server Name</label>
+                        <span class="w-full" style="display: inline-flex;">
+                            <a class="inline px-1 py-2 text-gray-700 rounded">gb-</a>
+                            <input class=" px-2 w-full text-gray-700 bg-gray-200 rounded" id="server_name" name="server_name" type="text" required="" placeholder="Server Name" aria-label="Server Name">
+                          </span>
+                        <div id="feedback-message"></div>
+                    </div>
+
+                    <div class="mt-2">
+                        <label class=" block text-sm text-gray-600" for="server_description">Server Description</label>
+                        <input class="w-full px-2 py-2 text-gray-700 bg-gray-200 rounded" id="server_description" name="server_description" type="text" required="" placeholder="Server Description" aria-label="Server Description">
+                    </div>
+
+                    <div class="mt-2">
+                        <label class=" block text-sm text-gray-600" for="server_deployer">Server Deployer</label>
+                        <input 
+                            class="w-full px-2 py-2 text-gray-700 bg-gray-200 rounded" 
+                            id="server_deployer" 
+                            name="server_deployer" 
+                            type="text" required="" 
+                            placeholder="Server Deployer" aria-label="Server Deployer"
+                            value="macaron">
+                    </div>
+
+                    <div class="mt-2">
+                        <label class=" block text-sm text-gray-600" for="game_server_tag">Game Server Tag</label>
+                        <select class="w-full px-2 py-2 text-gray-700 bg-gray-200 rounded" id="game_server_tag" name="game_server_tag">
+                            <option value="0.0.2">Client Version 0.0.2</option>
+                            <option value="0.0.1">Client Version 0.0.1</option>
+                        </select>
+                    </div>
+
+                    <div class="mt-2">
+                        <label class=" block text-sm text-gray-600" for="macaron_tag">Macaron Tag</label>
+                        <select class="w-full px-2 py-2 text-gray-700 bg-gray-200 rounded" id="macaron_tag" name="macaron_tag">
+                            <option value="0.0.1">Database Version 0.0.1</option>
+                        </select>
+                    </div>
+                    
+                    <div class="mt-6">
+                        <button id="server-create-button" class="px-4 py-1 text-white disabled:opacity-50 bg-orange-500 rounded" disabled type="submit">Create</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
