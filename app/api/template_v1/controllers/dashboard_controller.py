@@ -1,8 +1,7 @@
 from fastapi import APIRouter, Request, Depends
 from sqlalchemy.orm import Session
-from fastapi.responses import HTMLResponse, RedirectResponse
+from fastapi.responses import HTMLResponse, RedirectResponse, PlainTextResponse
 from fastapi.templating import Jinja2Templates
-
 
 from app import services, core, dto
 
@@ -14,6 +13,12 @@ templates = Jinja2Templates(directory="app/templates")
 @router.get("/", response_class=HTMLResponse)
 async def index():
     return RedirectResponse("/dashboard")
+
+
+@router.get("/robots.txt", response_class=PlainTextResponse)
+def robots():
+    data = """User-agent: *\nDisallow: /"""
+    return data
 
 
 @router.get("/dashboard", response_class=HTMLResponse)
