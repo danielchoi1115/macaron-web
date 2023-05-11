@@ -81,7 +81,7 @@ async def create_server(
 @router.delete(
     "/{server_name}", status_code=status.HTTP_200_OK, response_model=dto.Server
 )
-async def delete_server(
+async def delete_server_from_database(
     server_name: str, db: Session = Depends(core.get_db)
 ) -> dto.Server:
     server_in = dto.Server(server_name=server_name)
@@ -91,7 +91,7 @@ async def delete_server(
 @router.delete(
     "/{server_name}/kube", status_code=status.HTTP_200_OK, response_model=dto.Server
 )
-async def delete_server(
+async def delete_server_from_kubernetes(
     server_name: str, db: Session = Depends(core.get_db)
 ) -> dto.Server:
     server_in = dto.Server(server_name=server_name)
