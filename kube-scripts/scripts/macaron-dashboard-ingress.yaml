@@ -1,0 +1,48 @@
+kind: "Service"
+apiVersion: "v1"
+metadata:
+  name: "macaron-dashboard"
+  namespace: macaron
+spec:
+  ports:
+    -
+      protocol: "TCP"
+      port: 48000
+      targetPort: 48000
+---
+  kind: "Endpoints"
+  apiVersion: "v1"
+  metadata:
+    name: "macaron-dashboard" 
+    namespace: macaron
+  subsets: 
+    -
+      addresses:
+        -
+          ip: "172.30.1.200"
+      ports:
+        -
+          port: 48000
+
+--- 
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: macaron-dashboard-ingress
+  namespace: macaron
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: ginger-macaron.world
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: macaron-dashboard
+            port:
+              number: 48000

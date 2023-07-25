@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploy1-flasksrv
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: deploy1-flasksrv
+  template:
+    metadata:
+      labels:
+        app: deploy1-flasksrv
+    spec:
+      containers:
+      - name: pod-flask
+        image: danielchoi1115/macaron-flask-demo:0.0.1
+        imagePullPolicy: Always
+        workingDir: /app
+        ports:
+        - containerPort: 40080
+        resources:
+          limits:
+            memory: "500Mi"
+            cpu: "500m"
+          requests:
+            memory: "250Mi"
+            cpu: "250m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: flasksrv
+spec:
+  type: NodePort
+  selector:
+    app: deploy1-flasksrv
+  ports:
+    - name: flask-port
+      port: 50080
+      targetPort: 40080
