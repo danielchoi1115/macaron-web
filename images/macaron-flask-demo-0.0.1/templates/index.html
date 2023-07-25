@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Devsisters</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="Welcome to the Cookie Run Game website!">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='./css/style.css') }}">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='./images/favicon.ico') }}">
+    <style>
+      .banner {
+        background-image: url('{{ url_for('static', filename='./images/banner.webp') }}');
+        opacity: 0.2;
+        background-size: cover;
+        background-position: center center;
+        height: 100vh;
+        width: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: -1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="banner">
+      
+    </div>
+    <h1>데브시스터즈 테스트 서버 0.0.1</h1>
+      <p>현재 테스트 중인 클라이언트 버전은 <strong>0.0.1</strong> 이며,</p>
+      <p>데이터베이스는 <strong>mysql/mysql-server:8.0</strong>을 사용하고 있습니다.</p>
+
+    <footer>
+      <p>&copy; 상업적 목적으로 사용하지 않는 개인 개발용 페이지입니다.</p>
+    </footer>
+  </body>
+ 
+</html>
+
